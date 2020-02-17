@@ -58,12 +58,15 @@ class DocReader(object):
         except ValueError:
             pass
         tok.ner, tok.partialparse = items[7], items[8]
-        try:
-            tok.eduidx = int(items[9])
-        except ValueError:
-            print tok.word, self.fmerge
-            # sys.exit()
-            pass
+        if len(items) >= 10:
+            tok.eduidx = int(items[-1])
+            num_of_extra_features = len(items) - 10
+            for i in range(num_of_extra_features):
+                setattr(tok, 'extra_' + str(i + 1), items[ 10 + i])
+        else:
+            print(line)
+            print("--- Index out of range ---")
+
         return tok
 
 
