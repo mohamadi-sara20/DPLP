@@ -88,8 +88,11 @@ class DocReader(object):
             tok.partialparse = items[8]
         except IndexError:
             pass
-        if len(items) == 10:
-            tok.eduidx = int(items[9])
+        if len(items) >= 10:
+            tok.eduidx = int(items[-1])
+            num_of_extra_features = len(items) - 10
+            for i in range(num_of_extra_features):
+                setattr(tok, 'extra_' + str(i + 1), items[ 10 + i])
         elif (len(items) == 9) or (len(items) == 8):
             pass
         else:

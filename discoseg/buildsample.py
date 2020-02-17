@@ -19,7 +19,7 @@ def main(rpath, fdata, fvocab):
     sg = SampleGenerator(vocab)
     flist = [join(rpath,fname) for fname in listdir(rpath) if fname.endswith('merge')]
     for fname in flist:
-        # print "Reading file: {}".format(fname)
+        print "Reading file: {}".format(fname)
         doc = dr.read(fname)
         sg.build(doc)
     M, labels = sg.getmat()

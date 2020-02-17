@@ -24,6 +24,7 @@ testpath = "data/neg/"
 writepath = "data/neg/"
 
 def main():
+    print('====================== segmenter training =================')
     ## Build vocab
     thresh = 5
     buildvocab.main(trainpath, thresh, fvocab)
@@ -34,7 +35,7 @@ def main():
     ## Training
     buildmodel.main(ftrain, fdev, fmodel)
     ## Segmentation
-    #buildedu.main(fmodel, fvocab, testpath, writepath)
+    buildedu.main(fmodel, fvocab, testpath, writepath)
 
 
 if __name__ == '__main__':
